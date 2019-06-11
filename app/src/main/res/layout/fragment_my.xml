@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingTop="15dp"
+              tools:context=".fragment.MyFragment" android:orientation="vertical">
+
+    <RelativeLayout
+            android:id="@+id/githubRL"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="50dp">
+
+        <ImageView
+                android:layout_width="26dp"
+                android:layout_height="19dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:layout_marginStart="12dp"
+                android:src="@mipmap/github"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/text"
+                  android:text="Github"
+                  android:textSize="16sp"
+                  android:layout_centerVertical="true"
+                  android:layout_marginStart="48dp"
+                  android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_navigate_next_black_24dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_marginTop="3dp"
+            android:layout_height="50dp">
+
+        <ImageView
+                android:layout_width="26dp"
+                android:layout_height="19dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:layout_marginStart="12dp"
+                android:src="@mipmap/edit"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/text"
+                  android:text="提Issue/PR"
+                  android:textSize="16sp"
+                  android:layout_centerVertical="true"
+                  android:layout_marginStart="48dp"
+                  android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_navigate_next_black_24dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/aboutRL"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_marginTop="3dp"
+            android:layout_height="50dp">
+
+        <ImageView
+                android:layout_width="26dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:layout_marginStart="12dp"
+                android:src="@mipmap/about"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/text"
+                  android:text="关于"
+                  android:textSize="16sp"
+                  android:layout_centerVertical="true"
+                  android:layout_marginStart="48dp"
+                  android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_navigate_next_black_24dp"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

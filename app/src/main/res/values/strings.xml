@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">GankKotlin</string>
+    <string name="app_name">干货集中营</string>
+    <string name="title_home">最新</string>
+    <string name="title_dashboard">分类</string>
+    <string name="title_collect">收藏</string>
+    <string name="title_person">我的</string>
+
 </resources>
