@@ -5,4 +5,14 @@
     <string name="title_collect">收藏</string>
     <string name="title_person">我的</string>
 
+    <string name="about1">
+        该项目是干货集中营移动端全家桶系列第四篇，之前已经实现了Flutter，React Native，微信小程序开发，浏览我的Github主页，找到Gank开头的项目就可以查看相关源码
+    </string>
+    <string name="about2">
+        本项目基于MVVM架构开发，目前收藏功能仅支持本地存储，不支持离线存储
+    </string>
+    <string name="about3">
+        如果你在使用过程中，遇到什么问题， 或者有什么好的建议，欢迎反馈
+    </string>
+
 </resources>
