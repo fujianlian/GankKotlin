@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+                name="bean"
+                type="com.fujianlian.gankkotlin.bean.CollectBean"/>
+        <variable
+                name="view"
+                type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@color/white"
+    >
+
+        <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/title"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:lineSpacingExtra="5dp"
+                    android:ellipsize="end"
+                    android:text="@{bean.title}"
+            />
+
+            <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="105dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="70dp"
+                    android:ellipsize="end"
+                    app:imageId="@{bean.image}"
+                    android:visibility="@{bean.image.length()>0?view.VISIBLE:view.GONE}"
+            />
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/who"
+                android:layout_below="@+id/linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bean.who}"
+                android:textSize="12sp"
+        />
+
+        <TextView
+                android:id="@+id/time"
+                android:layout_below="@+id/linear"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:text="@{bean.time}"
+                android:textSize="12sp"
+        />
+
+    </RelativeLayout>
+
+</layout>

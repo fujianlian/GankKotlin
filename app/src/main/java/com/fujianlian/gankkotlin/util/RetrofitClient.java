@@ -68,7 +68,7 @@ public class RetrofitClient {
         }
 
         if (httpCacheDirectory == null) {
-            httpCacheDirectory = new File(mContext.getCacheDir(), "goldze_cache");
+            httpCacheDirectory = new File(mContext.getCacheDir(), "gank_cache");
         }
 
         try {
