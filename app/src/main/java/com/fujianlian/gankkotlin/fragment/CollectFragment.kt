@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.fujianlian.gankkotlin.R
 import com.fujianlian.gankkotlin.bean.CollectBean
@@ -29,7 +30,8 @@ class CollectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CollectViewModel::class.java)
-        viewpager.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = adapter
 
         viewModel.list.observe(this, Observer<List<CollectBean>> {
             list.clear()

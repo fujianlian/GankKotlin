@@ -1,12 +1,15 @@
 package com.fujianlian.gankkotlin.fragment
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.fujianlian.gankkotlin.WebActivity
 import com.fujianlian.gankkotlin.bean.CollectBean
 import com.fujianlian.gankkotlin.util.DatabaseOpenHelper
 import com.fujianlian.gankkotlin.util.DatabaseOpenHelper.Columns
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.select
+import org.jetbrains.anko.startActivity
 
 class CollectViewModel : ViewModel() {
 

@@ -16,10 +16,15 @@ import com.fujianlian.gankkotlin.bean.CollectBean
 
 class CollectAdapter(private val list: List<CollectBean>) : RecyclerView.Adapter<CollectAdapter.ViewHolder>() {
 
-    @BindingAdapter("app:imageId")
-    fun ImageView.getInternetImage(@NonNull url: String) {
-        this.setImageURI(Uri.parse(url))
+    companion object {
+        @JvmStatic
+        @BindingAdapter("app:imageId")
+        fun ImageView.getInternetImage(@NonNull url: String) {
+            this.setImageURI(Uri.parse(url))
+        }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.gank_item, parent, false)
