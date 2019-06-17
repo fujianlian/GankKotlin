@@ -48,5 +48,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'com.github.goldze:MVVMHabit:3.1.2'
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.1'
+    implementation 'com.facebook.fresco:fresco:1.13.0'
+    implementation 'com.facebook.fresco:animated-gif:1.13.0'
 
 }

@@ -8,7 +8,7 @@ import com.fujianlian.gankkotlin.util.DatabaseOpenHelper.Columns
 import org.jetbrains.anko.db.MapRowParser
 import org.jetbrains.anko.db.select
 
-class CollectViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     val list: MutableLiveData<List<CollectBean>> = MutableLiveData()
 

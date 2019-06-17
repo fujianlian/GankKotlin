@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fujianlian.gankkotlin.view.MyXBanner
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:id="@+id/myXBanner"
+        app:AutoPlayTime="3000"
+        app:pointNormal="@drawable/shape_noraml"
+        app:pointSelect="@drawable/shape_selected"
+        app:isShowIndicatorOnlyOne="true"
+        app:pageChangeDuration="800">
+</com.fujianlian.gankkotlin.view.MyXBanner>

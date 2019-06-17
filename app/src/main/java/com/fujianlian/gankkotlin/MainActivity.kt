@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.fujianlian.gankkotlin.fragment.CollectFragment
 import com.fujianlian.gankkotlin.fragment.HomeFragment
 import com.fujianlian.gankkotlin.fragment.MyFragment
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Fresco.initialize(this)
         list.add(HomeFragment())
         list.add(SortFragment())
         list.add(CollectFragment())
