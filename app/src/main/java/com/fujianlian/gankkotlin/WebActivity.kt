@@ -33,6 +33,7 @@ class WebActivity : BaseActivity() {
         if (fromList) {
             viewModel = ViewModelProviders.of(this).get(WebViewModel::class.java)
             viewModel.bean = bean
+            title = bean.desc
             webView.loadUrl(bean.url)
             observe()
             if (!bean.isCollect) {

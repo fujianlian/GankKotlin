@@ -9,14 +9,15 @@ import org.jetbrains.anko.startActivity
 
 @Parcelize
 class GankBean(
-    var id: String,
+    var _id: String,
     var publishedAt: String,
     var type: String,
     var desc: String,
     var who: String,
     var url: String,
     var image: String,
-    var isCollect:Boolean = false
+    var isCollect: Boolean = false,
+    var images: ArrayList<String>? = null
 ) : SimpleBannerInfo(),
     Parcelable {
 

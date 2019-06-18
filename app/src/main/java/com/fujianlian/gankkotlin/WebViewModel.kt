@@ -19,7 +19,7 @@ class WebViewModel : ViewModel() {
     fun checkCollect(dataBase: DatabaseOpenHelper) {
         dataBase.use {
             val a = select(DatabaseOpenHelper.TABLE)
-                .whereSimple(Columns.id + " = ?", bean.id)
+                .whereSimple(Columns.id + " = ?", bean._id)
                 .parseList(object : MapRowParser<Any> {
                     override fun parseRow(columns: Map<String, Any?>): Any {
                         return columns
@@ -31,7 +31,7 @@ class WebViewModel : ViewModel() {
 
     fun addCollect(dataBase: DatabaseOpenHelper) {
         val values = ContentValues()
-        values.put(Columns.id, bean.id)
+        values.put(Columns.id, bean._id)
         values.put(Columns.image, bean.image)
         values.put(Columns.type, bean.type)
         values.put(Columns.who, bean.who)
@@ -46,7 +46,7 @@ class WebViewModel : ViewModel() {
 
     fun deleteCollect(dataBase: DatabaseOpenHelper) {
         dataBase.use {
-            val a = delete(DatabaseOpenHelper.TABLE, Columns.id + " = ?", arrayOf(bean.id))
+            val a = delete(DatabaseOpenHelper.TABLE, Columns.id + " = ?", arrayOf(bean._id))
             isDelete.postValue(a == 1)
         }
     }

@@ -6,6 +6,7 @@
     <color name="bac">#f5f4f5</color>
     <color name="text">#333333</color>
     <color name="img_bac">#dfdfdf</color>
+    <color name="tab">#777</color>
     <color name="white">#ffffff</color>
 
 </resources>

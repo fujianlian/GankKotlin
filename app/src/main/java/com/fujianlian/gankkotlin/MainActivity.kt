@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.fujianlian.gankkotlin.fragment.CollectFragment
-import com.fujianlian.gankkotlin.fragment.HomeFragment
+import com.fujianlian.gankkotlin.fragment.collect.CollectFragment
+import com.fujianlian.gankkotlin.fragment.home.HomeFragment
 import com.fujianlian.gankkotlin.fragment.MyFragment
-import com.fujianlian.gankkotlin.fragment.SortFragment
+import com.fujianlian.gankkotlin.fragment.sort.SortFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
 

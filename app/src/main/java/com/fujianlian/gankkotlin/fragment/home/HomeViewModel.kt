@@ -1,4 +1,4 @@
-package com.fujianlian.gankkotlin.fragment
+package com.fujianlian.gankkotlin.fragment.home
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

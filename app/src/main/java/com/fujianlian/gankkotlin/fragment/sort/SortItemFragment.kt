@@ -1,4 +1,4 @@
-package com.fujianlian.gankkotlin.fragment
+package com.fujianlian.gankkotlin.fragment.sort
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,14 +10,24 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fujianlian.gankkotlin.R
 import com.fujianlian.gankkotlin.bean.GankBean
+import com.fujianlian.gankkotlin.fragment.collect.CollectAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class SortItemFragment : Fragment() {
 
-    private val adapter by lazy { HomeAdapter(list,imagesUrl) }
+    private lateinit var viewModel: SortItemViewModel
+
+    private var index = 1
+
+    private val adapter by lazy { CollectAdapter(list) }
     private val list: ArrayList<GankBean> = ArrayList()
-    private val imagesUrl: ArrayList<GankBean> = ArrayList()
-    private lateinit var viewModel: HomeViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(SortItemViewModel::class.java).apply {
+            type = arguments?.getString(GANK_TYPE) ?: ""
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,24 +38,28 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
-        viewModel.bannerList.observe(this, Observer<List<GankBean>> {
-            imagesUrl.clear()
-            imagesUrl.addAll(it)
-            if (imagesUrl.size > 0)
-                adapter.notifyItemChanged(0)
-        })
         viewModel.list.observe(this, Observer<List<GankBean>> {
-            list.clear()
+            if (index == 1)
+                list.clear()
             list.addAll(it)
+            adapter.notifyDataSetChanged()
         })
-        viewModel.getBannerList()
-        viewModel.getList()
+        viewModel.getList(index)
     }
 
+    companion object {
+
+        private const val GANK_TYPE = "section_type"
+
+        @JvmStatic
+        fun newInstance(type: String): SortItemFragment {
+            return SortItemFragment().apply {
+                arguments = Bundle().apply {
+                    putString(GANK_TYPE, type)
+                }
+            }
+        }
+    }
 }
-
-
-

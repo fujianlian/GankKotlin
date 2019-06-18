@@ -1,4 +1,4 @@
-package com.fujianlian.gankkotlin.fragment
+package com.fujianlian.gankkotlin.fragment.collect
 
 import android.view.LayoutInflater
 import android.view.View
