@@ -1,33 +1,27 @@
 package com.fujianlian.gankkotlin.fragment
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fujianlian.gankkotlin.bean.CollectBean
-import com.fujianlian.gankkotlin.util.DatabaseOpenHelper
-import com.fujianlian.gankkotlin.util.DatabaseOpenHelper.Columns
-import org.jetbrains.anko.db.MapRowParser
-import org.jetbrains.anko.db.select
+import com.fujianlian.gankkotlin.bean.GankBean
+import com.fujianlian.gankkotlin.util.HttpModel
+import com.vise.xsnow.http.ViseHttp
+import com.vise.xsnow.http.callback.ACallback
 
 class HomeViewModel : ViewModel() {
 
-    val list: MutableLiveData<List<CollectBean>> = MutableLiveData()
+    val list: MutableLiveData<List<GankBean>> = MutableLiveData()
 
-    fun getList(dataBase: DatabaseOpenHelper) {
-        dataBase.use {
-            list.value = select(DatabaseOpenHelper.TABLE)
-                .parseList(object : MapRowParser<CollectBean> {
-                    override fun parseRow(columns: Map<String, Any?>): CollectBean {
-                        val bean = CollectBean()
-                        bean.id = columns[Columns.id].toString()
-                        bean.title = columns[Columns.title].toString()
-                        bean.time = columns[Columns.time].toString()
-                        bean.who = columns[Columns.who].toString()
-                        bean.url = columns[Columns.url].toString()
-                        bean.type = columns[Columns.type].toString()
-                        bean.image = columns[Columns.image].toString()
-                        return bean
-                    }
-                })
-        }
+    fun getList() {
+        ViseHttp.GET("api/data/福利/5/1")
+            .request(object : ACallback<HttpModel<List<GankBean>>>() {
+                override fun onSuccess(data: HttpModel<List<GankBean>>) {
+                    list.postValue(data.results!!)
+                }
+
+                override fun onFail(errCode: Int, errMsg: String) {
+                    Log.d("DATA===", "fail")
+                }
+            })
     }
 }

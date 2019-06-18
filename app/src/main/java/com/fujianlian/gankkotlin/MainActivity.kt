@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.facebook.drawee.backends.pipeline.Fresco
 import com.fujianlian.gankkotlin.fragment.CollectFragment
 import com.fujianlian.gankkotlin.fragment.HomeFragment
 import com.fujianlian.gankkotlin.fragment.MyFragment
@@ -28,7 +27,6 @@ class MainActivity : AppCompatActivity() {
             override fun createFragment(position: Int): Fragment {
                 return list[position]
             }
-
         }
     }
 
@@ -41,19 +39,16 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_dashboard -> {
                 setTitle(R.string.title_dashboard)
-
                 viewpager2.setCurrentItem(1, false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_collect -> {
                 setTitle(R.string.title_collect)
-
                 viewpager2.setCurrentItem(2, false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_person -> {
                 setTitle(R.string.title_person)
-
                 viewpager2.setCurrentItem(3, false)
                 return@OnNavigationItemSelectedListener true
             }
@@ -63,7 +58,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Fresco.initialize(this)
         list.add(HomeFragment())
         list.add(SortFragment())
         list.add(CollectFragment())
