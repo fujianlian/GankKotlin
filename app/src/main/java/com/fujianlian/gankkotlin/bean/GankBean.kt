@@ -1,20 +1,24 @@
 package com.fujianlian.gankkotlin.bean
 
+import android.os.Parcelable
 import android.view.View
 import com.fujianlian.gankkotlin.WebActivity
 import com.stx.xhb.androidx.entity.SimpleBannerInfo
+import kotlinx.android.parcel.Parcelize
 import org.jetbrains.anko.startActivity
 
-class GankBean : SimpleBannerInfo() {
-
-    var _id = ""
-    var publishedAt = ""
-    var type = ""
-    var desc = ""
-    var who = ""
-    var url = ""
-    var images: List<String>? = null
-    var image: String? = null
+@Parcelize
+class GankBean(
+    var id: String,
+    var publishedAt: String,
+    var type: String,
+    var desc: String,
+    var who: String,
+    var url: String,
+    var image: String,
+    var isCollect:Boolean = false
+) : SimpleBannerInfo(),
+    Parcelable {
 
     override fun getXBannerUrl(): String {
         return url
@@ -24,17 +28,11 @@ class GankBean : SimpleBannerInfo() {
         return desc
     }
 
-    override fun toString(): String {
-        return "desc=$desc,who=$who,url=$url , images=${images?.toString()}"
-    }
-
-
     fun goWeb(view: View) {
-        view.context.startActivity<WebActivity>("title" to desc, "url" to url)
+        view.context.startActivity<WebActivity>("bean" to this, "fromList" to true)
     }
 
     fun getWhos(): String {
         return "$who · $type"
     }
-
 }

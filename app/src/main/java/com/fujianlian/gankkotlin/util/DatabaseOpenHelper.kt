@@ -25,9 +25,9 @@ class DatabaseOpenHelper private constructor(ctx: Context) : ManagedSQLiteOpenHe
             Columns.image to TEXT,
             Columns.type to TEXT,
             Columns.who to TEXT,
-            Columns.title to TEXT,
-            Columns.time to TEXT,
-            Columns.url to TEXT
+            Columns.url to TEXT,
+            Columns.publishAt to TEXT,
+            Columns.desc to TEXT
         )
     }
 
@@ -40,9 +40,9 @@ class DatabaseOpenHelper private constructor(ctx: Context) : ManagedSQLiteOpenHe
         const val image = "image"
         const val type = "type"
         const val who = "who"
-        const val title = "title"
-        const val time = "time"
         const val url = "url"
+        const val publishAt = "publishAt"
+        const val desc = "desc"
     }
 }
 

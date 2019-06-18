@@ -43,14 +43,16 @@ class HomeViewModel : ViewModel() {
                     val l = ArrayList<GankBean>()
                     for (c in category) {
                         val a = data.results!!.getValue(c).reversed()
-                        val bean = GankBean()
-                        bean._id = a[0]["_id"].toString()
-                        bean.desc = a[0]["desc"].toString()
-                        bean.publishedAt = a[0]["publishedAt"].toString()
-                        bean.who = a[0]["who"].toString()
-                        bean.url = a[0]["url"].toString()
-                        bean.type = a[0]["type"].toString()
-                        bean.images = if (a[0]["images"] == null) null else a[0]["images"] as List<String>
+                        val images = if (a[0]["images"] == null) null else a[0]["images"] as List<String>
+                        val bean = GankBean(
+                            a[0]["_id"].toString(),
+                            a[0]["publishedAt"].toString().substring(0, 10),
+                            a[0]["type"].toString(),
+                            a[0]["desc"].toString(),
+                            a[0]["who"].toString(),
+                            a[0]["url"].toString(),
+                            if (images == null) "" else images[0]
+                        )
                         l.add(bean)
                     }
                     list.postValue(l)

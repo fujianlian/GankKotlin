@@ -45,9 +45,8 @@
                     android:layout_width="105dp"
                     android:layout_marginStart="10dp"
                     android:layout_height="70dp"
-                    android:scaleType="fitCenter"
-                    app:imageId="@{bean.images!=null?bean.images[0]:bean.url}"
-                    android:visibility="@{bean.images!=null?view.VISIBLE:view.GONE}"
+                    app:imageId="@{bean.image}"
+                    android:visibility="@{bean.image.length()>0?view.VISIBLE:view.GONE}"
             />
 
         </LinearLayout>
@@ -67,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_height="wrap_content"
-                android:text="@{bean.publishedAt.substring(0,10)}"
+                android:text="@{bean.publishedAt}"
                 android:textSize="12sp"
         />
 

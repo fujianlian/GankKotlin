@@ -17,15 +17,16 @@ class CollectViewModel : ViewModel() {
             list.value = select(DatabaseOpenHelper.TABLE)
                 .parseList(object : MapRowParser<GankBean> {
                     override fun parseRow(columns: Map<String, Any?>): GankBean {
-                        val bean = GankBean()
-                        bean._id = columns[Columns.id].toString()
-                        bean.desc = columns[Columns.title].toString()
-                        bean.publishedAt = columns[Columns.time].toString()
-                        bean.who = columns[Columns.who].toString()
-                        bean.url = columns[Columns.url].toString()
-                        bean.type = columns[Columns.type].toString()
-                        bean.image  = columns[Columns.image].toString()
-                        return bean
+                        return GankBean(
+                            columns[Columns.id].toString(),
+                            columns[Columns.publishAt].toString(),
+                            columns[Columns.type].toString(),
+                            columns[Columns.desc].toString(),
+                            columns[Columns.who].toString(),
+                            columns[Columns.url].toString(),
+                            columns[Columns.image].toString(),
+                            true
+                        )
                     }
                 })
         }
