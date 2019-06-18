@@ -13,7 +13,7 @@ import com.fujianlian.gankkotlin.ImageActivity
 import com.fujianlian.gankkotlin.R
 import com.fujianlian.gankkotlin.bean.GankBean
 import com.fujianlian.gankkotlin.databinding.GankItemBinding
-import com.fujianlian.gankkotlin.view.MyXBanner
+import com.stx.xhb.androidx.XBanner
 import org.jetbrains.anko.startActivity
 
 class HomeAdapter(private val list: List<GankBean>, private val banners: List<GankBean>) :
@@ -52,7 +52,7 @@ class HomeAdapter(private val list: List<GankBean>, private val banners: List<Ga
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == 0) {
-            holder.myXBanner?.loadImage { _, _, view, p ->
+            holder.xBanner?.loadImage { _, _, view, p ->
                 val image = view as AppCompatImageView
                 Glide
                     .with(view.context)
@@ -61,13 +61,13 @@ class HomeAdapter(private val list: List<GankBean>, private val banners: List<Ga
                     .placeholder(R.color.img_bac)
                     .into(image)
             }
-            holder.myXBanner?.setOnItemClickListener { _, _, view, p ->
+            holder.xBanner?.setOnItemClickListener { _, _, view, p ->
                 view.context.startActivity<ImageActivity>(
                     "url" to banners[p].xBannerUrl,
                     "title" to banners[p].xBannerTitle
                 )
             }
-            holder.myXBanner?.setBannerData(R.layout.image_banner, banners)
+            holder.xBanner?.setBannerData(R.layout.image_banner, banners)
         } else {
             holder.bind(list[position - 1])
         }
@@ -75,11 +75,11 @@ class HomeAdapter(private val list: List<GankBean>, private val banners: List<Ga
 
     inner class ViewHolder internal constructor(itemView: View, viewType: Int) : RecyclerView.ViewHolder(itemView) {
         private var mBinding: GankItemBinding? = null
-        var myXBanner: MyXBanner? = null
+        var xBanner: XBanner? = null
 
         init {
             if (viewType == 1) {
-                myXBanner = itemView as MyXBanner
+                xBanner = itemView as XBanner
             } else {
                 mBinding = DataBindingUtil.bind(itemView)
             }

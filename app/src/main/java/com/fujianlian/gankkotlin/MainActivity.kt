@@ -3,8 +3,7 @@ package com.fujianlian.gankkotlin
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.fujianlian.gankkotlin.fragment.CollectFragment
 import com.fujianlian.gankkotlin.fragment.HomeFragment
 import com.fujianlian.gankkotlin.fragment.MyFragment
@@ -18,14 +17,13 @@ class MainActivity : AppCompatActivity() {
     private val list1 = ArrayList<Int>()
 
     private val adapter by lazy {
-        object : FragmentStateAdapter(this) {
-
-            override fun getItemCount(): Int {
-                return list.size
+        object : FragmentStatePagerAdapter(supportFragmentManager) {
+            override fun getItem(position: Int): Fragment {
+                return list[position]
             }
 
-            override fun createFragment(position: Int): Fragment {
-                return list[position]
+            override fun getCount(): Int {
+                return list.size
             }
         }
     }
@@ -34,22 +32,22 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 setTitle(R.string.title_home)
-                viewpager2.setCurrentItem(0, false)
+                myViewPager.setCurrentItem(0, false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
                 setTitle(R.string.title_dashboard)
-                viewpager2.setCurrentItem(1, false)
+                myViewPager.setCurrentItem(1, false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_collect -> {
                 setTitle(R.string.title_collect)
-                viewpager2.setCurrentItem(2, false)
+                myViewPager.setCurrentItem(2, false)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_person -> {
                 setTitle(R.string.title_person)
-                viewpager2.setCurrentItem(3, false)
+                myViewPager.setCurrentItem(3, false)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -67,15 +65,8 @@ class MainActivity : AppCompatActivity() {
         list1.add(R.id.navigation_collect)
         list1.add(R.id.navigation_person)
         setContentView(R.layout.activity_main)
-        viewpager2.adapter = adapter
-        viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-
-            override fun onPageSelected(position: Int) {
-                nav_view.selectedItemId = list1[position]
-            }
-        })
+        myViewPager.offscreenPageLimit = 3
+        myViewPager.adapter = adapter
         nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
-
-
 }

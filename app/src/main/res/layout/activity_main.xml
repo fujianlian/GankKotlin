@@ -9,8 +9,8 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager2"
+    <com.fujianlian.gankkotlin.view.MyViewPager
+            android:id="@+id/myViewPager"
             android:layout_width="match_parent"
             android:layout_marginBottom="56dp"
             android:layout_height="match_parent"/>

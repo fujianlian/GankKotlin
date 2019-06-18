@@ -36,8 +36,10 @@ class CollectFragment : Fragment() {
         viewModel.list.observe(this, Observer<List<GankBean>> {
             list.clear()
             list.addAll(it)
-            if (list.size > 0)
-                adapter.notifyDataSetChanged()
+            textView.visibility =
+                if (list.isNotEmpty()) View.GONE
+                else View.VISIBLE
+            adapter.notifyDataSetChanged()
         })
     }
 
