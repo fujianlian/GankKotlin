@@ -4,23 +4,57 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fujianlian.gankkotlin.bean.GankBean
+import com.fujianlian.gankkotlin.util.DatabaseOpenHelper
 import com.fujianlian.gankkotlin.util.HttpModel
 import com.vise.xsnow.http.ViseHttp
 import com.vise.xsnow.http.callback.ACallback
+import java.util.*
 
 class HomeViewModel : ViewModel() {
 
+    val bannerList: MutableLiveData<List<GankBean>> = MutableLiveData()
     val list: MutableLiveData<List<GankBean>> = MutableLiveData()
 
-    fun getList() {
+    fun getBannerList() {
         ViseHttp.GET("api/data/福利/5/1")
             .request(object : ACallback<HttpModel<List<GankBean>>>() {
                 override fun onSuccess(data: HttpModel<List<GankBean>>) {
-                    list.postValue(data.results!!)
+                    bannerList.postValue(data.results!!)
                 }
 
                 override fun onFail(errCode: Int, errMsg: String) {
-                    Log.d("DATA===", "fail")
+                    Log.d("DATA===", errMsg)
+                }
+            })
+    }
+
+    fun getList() {
+        ViseHttp.GET("api/today")
+            .request(object : ACallback<HttpModel<Map<String, List<Map<String, Any?>>>>>() {
+                override fun onSuccess(data: HttpModel<Map<String, List<Map<String, Any?>>>>) {
+                    val category = data.category!!
+                    if (category.contains("福利"))
+                        category.removeAt(category.indexOf("福利"))
+                    if (category.contains("休息视频"))
+                        category.removeAt(category.indexOf("休息视频"))
+                    val l = ArrayList<GankBean>()
+                    for (c in category) {
+                        val a = data.results!!.getValue(c).reversed()
+                        val bean = GankBean()
+                        bean._id = a[0]["_id"].toString()
+                        bean.desc = a[0]["desc"].toString()
+                        bean.publishedAt = a[0]["publishedAt"].toString()
+                        bean.who = a[0]["who"].toString()
+                        bean.url = a[0]["url"].toString()
+                        bean.type = a[0]["type"].toString()
+                        bean.images  = if(a[0]["images"]==null) null else a[0]["images"] as List<String>
+                        l.add(bean)
+                    }
+                    list.postValue(l)
+                }
+
+                override fun onFail(errCode: Int, errMsg: String) {
+                    Log.d("DATA===", errMsg)
                 }
             })
     }

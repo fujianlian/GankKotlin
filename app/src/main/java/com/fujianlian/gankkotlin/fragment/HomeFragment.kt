@@ -9,14 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fujianlian.gankkotlin.R
-import com.fujianlian.gankkotlin.bean.CollectBean
 import com.fujianlian.gankkotlin.bean.GankBean
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
     private val adapter by lazy { HomeAdapter(list,imagesUrl) }
-    private val list: ArrayList<CollectBean> = ArrayList()
+    private val list: ArrayList<GankBean> = ArrayList()
     private val imagesUrl: ArrayList<GankBean> = ArrayList()
     private lateinit var viewModel: HomeViewModel
 
@@ -32,12 +31,17 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
-        viewModel.list.observe(this, Observer<List<GankBean>> {
+        viewModel.bannerList.observe(this, Observer<List<GankBean>> {
             imagesUrl.clear()
             imagesUrl.addAll(it)
             if (imagesUrl.size > 0)
                 adapter.notifyItemChanged(0)
         })
+        viewModel.list.observe(this, Observer<List<GankBean>> {
+            list.clear()
+            list.addAll(it)
+        })
+        viewModel.getBannerList()
         viewModel.getList()
     }
 

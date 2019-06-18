@@ -10,14 +10,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.fujianlian.gankkotlin.R
-import com.fujianlian.gankkotlin.bean.CollectBean
+import com.fujianlian.gankkotlin.bean.GankBean
 import com.fujianlian.gankkotlin.util.database
 import kotlinx.android.synthetic.main.fragment_collect.*
 
 class CollectFragment : Fragment() {
 
     private val adapter by lazy { CollectAdapter(list) }
-    private val list: ArrayList<CollectBean> = ArrayList()
+    private val list: ArrayList<GankBean> = ArrayList()
     private lateinit var viewModel: CollectViewModel
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class CollectFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
 
-        viewModel.list.observe(this, Observer<List<CollectBean>> {
+        viewModel.list.observe(this, Observer<List<GankBean>> {
             list.clear()
             list.addAll(it)
             if (list.size > 0)

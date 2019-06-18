@@ -5,19 +5,33 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fujianlian.gankkotlin.ImageActivity
 import com.fujianlian.gankkotlin.R
-import com.fujianlian.gankkotlin.bean.CollectBean
 import com.fujianlian.gankkotlin.bean.GankBean
 import com.fujianlian.gankkotlin.databinding.GankItemBinding
 import com.fujianlian.gankkotlin.view.MyXBanner
 import org.jetbrains.anko.startActivity
 
-class HomeAdapter(private val list: List<CollectBean>, private val banners: List<GankBean>) :
+class HomeAdapter(private val list: List<GankBean>, private val banners: List<GankBean>) :
     RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("app:imageId")
+        fun AppCompatImageView.getInternetImage(@NonNull imgUrl: String) {
+            Glide
+                .with(context)
+                .load(imgUrl)
+                .centerCrop()
+                .placeholder(R.color.img_bac)
+                .centerCrop()
+                .into(this)
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = if (viewType == 1) {
@@ -71,7 +85,7 @@ class HomeAdapter(private val list: List<CollectBean>, private val banners: List
             }
         }
 
-        fun bind(@NonNull bean: CollectBean) {
+        fun bind(@NonNull bean: GankBean) {
             mBinding?.bean = bean
         }
     }
