@@ -1,6 +1,7 @@
 package com.fujianlian.gankkotlin
 
 import android.app.Application
+import com.fujianlian.gankkotlin.util.Global
 import com.vise.log.ViseLog
 import com.vise.log.inner.LogcatTree
 import com.vise.xsnow.http.ViseHttp
@@ -11,6 +12,7 @@ class GankApplication :Application() {
         super.onCreate()
         initNetLog()
         initNet()
+        Global.setApplicationContext(this)
     }
 
     private fun initNetLog() {

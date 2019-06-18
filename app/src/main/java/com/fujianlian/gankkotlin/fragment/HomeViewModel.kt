@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fujianlian.gankkotlin.bean.GankBean
-import com.fujianlian.gankkotlin.util.DatabaseOpenHelper
 import com.fujianlian.gankkotlin.util.HttpModel
+import com.fujianlian.gankkotlin.util.ToastUtil
 import com.vise.xsnow.http.ViseHttp
 import com.vise.xsnow.http.callback.ACallback
 import java.util.*
@@ -17,6 +17,7 @@ class HomeViewModel : ViewModel() {
 
     fun getBannerList() {
         ViseHttp.GET("api/data/福利/5/1")
+            .setHttpCache(true)
             .request(object : ACallback<HttpModel<List<GankBean>>>() {
                 override fun onSuccess(data: HttpModel<List<GankBean>>) {
                     bannerList.postValue(data.results!!)
@@ -24,12 +25,14 @@ class HomeViewModel : ViewModel() {
 
                 override fun onFail(errCode: Int, errMsg: String) {
                     Log.d("DATA===", errMsg)
+                    ToastUtil.showToast("请检查网络是否打开")
                 }
             })
     }
 
     fun getList() {
         ViseHttp.GET("api/today")
+            .setHttpCache(true)
             .request(object : ACallback<HttpModel<Map<String, List<Map<String, Any?>>>>>() {
                 override fun onSuccess(data: HttpModel<Map<String, List<Map<String, Any?>>>>) {
                     val category = data.category!!
@@ -47,7 +50,7 @@ class HomeViewModel : ViewModel() {
                         bean.who = a[0]["who"].toString()
                         bean.url = a[0]["url"].toString()
                         bean.type = a[0]["type"].toString()
-                        bean.images  = if(a[0]["images"]==null) null else a[0]["images"] as List<String>
+                        bean.images = if (a[0]["images"] == null) null else a[0]["images"] as List<String>
                         l.add(bean)
                     }
                     list.postValue(l)
@@ -55,6 +58,7 @@ class HomeViewModel : ViewModel() {
 
                 override fun onFail(errCode: Int, errMsg: String) {
                     Log.d("DATA===", errMsg)
+                    ToastUtil.showToast("请检查网络是否打开")
                 }
             })
     }
