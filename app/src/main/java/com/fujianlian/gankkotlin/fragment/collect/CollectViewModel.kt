@@ -28,7 +28,7 @@ class CollectViewModel : ViewModel() {
                             true
                         )
                     }
-                })
+                }).reversed()
         }
     }
 }

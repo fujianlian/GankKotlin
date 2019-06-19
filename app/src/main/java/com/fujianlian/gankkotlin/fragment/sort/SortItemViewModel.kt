@@ -15,8 +15,7 @@ class SortItemViewModel : ViewModel() {
     val list: MutableLiveData<List<GankBean>> = MutableLiveData()
 
     fun getList(index: Int) {
-        Log.e("type===", type)
-        ViseHttp.GET("api/data/$type/10/$index")
+        ViseHttp.GET("api/data/$type/20/$index")
             .setHttpCache(true)
             .request(object : ACallback<HttpModel<List<GankBean>>>() {
                 override fun onSuccess(data: HttpModel<List<GankBean>>) {
@@ -27,6 +26,7 @@ class SortItemViewModel : ViewModel() {
                             it.image = it.images!![0]
                             it.images!!.clear()
                         }
+                        it.publishedAt = it.publishedAt.substring(0, 10)
                     }
                     list.postValue(data.results!!)
                 }

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_web.*
 
 class WebActivity : BaseActivity() {
 
-    private var favoriteItem: MenuItem?=null
+    private var favoriteItem: MenuItem? = null
     private lateinit var closeItem: MenuItem
     private val fromList by lazy {
         intent.getBooleanExtra("fromList", false)
